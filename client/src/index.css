@@ -1,0 +1,338 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+.textCenter{
+  text-align: center;
+}
+.fixed{
+  position: sticky;
+  top: 15px;
+  z-index: 100;
+}
+h1 {
+  font-size: 2.2em;
+  line-height: 1.1;
+  color: rgb(157, 154, 154);
+  margin-top: 20px;
+}
+.downBtn{
+  border-radius: 100px ;
+  background-color: rgb(37, 133, 155);
+  padding: 10px;
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  transition: 0.3s ease-in;
+}
+.downBtn:hover{
+  border: 2px solid rgb(174, 5, 174);
+  background-color: rgba(37, 133, 155, 0.778)
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+.audioBtn{
+  height: 55px;
+}
+.container{
+  position: relative;
+  width: 60%;
+  display: block;
+  margin: auto;
+  margin-top: 100px;
+}
+.page{
+  width: 100%;
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.videoContainer{
+  width: 500px;
+  height: 500px;
+  display: block;
+  margin: auto;
+  margin-top: 100px;
+}
+.input{
+  display: block;
+  margin: auto;
+  width: 100%;
+  height: 150px;
+  border-radius: 20px;
+  box-shadow: 0px 10px 20px rgb(78, 77, 77);
+  color: white;
+  padding-left: 10px;
+  font-size: 20px;
+}
+.textArea{
+  display: block;
+  margin: auto;
+  min-width: 100%;
+  width: 100%;
+  min-height: 150px;
+  box-shadow: 0px 10px 20px rgb(78, 77, 77);
+  color: white;
+  padding-left: 10px;
+  padding-top: 30px;
+  font-size: 20px;
+  resize: vertical;
+}
+.wide{
+  width: 70%;
+}
+.smallInput{
+  display: block;
+  margin: auto;
+  width: 100%;
+  height: 70px;
+  border: 0px solid;
+  box-shadow: 0px 2px 4px rgb(78, 77, 77);
+  border-radius: 20px;
+  color: rgb(255, 255, 255);
+  background-color: rgba(10, 10, 10, 0.489);
+  padding-left: 10px;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.logo{
+  margin-top: 20px;
+  height: 200px;
+  border-radius: 100%;
+  border: rgb(0, 81, 128) solid 5px;
+}
+.smallLogo{
+  margin-top: 10px;
+  margin-left: 20px;
+  height: 100px;
+  border-radius: 100%;
+  border: rgb(0, 81, 128) solid 5px;
+}
+.profileSection{
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  height: 100px;
+  width: 200px;
+}
+.link{
+  margin-top: 20px;
+  color: rgb(0, 255, 195);
+}
+.link:hover{
+  color: red;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.center{
+  display: block;
+  margin: auto;
+}
+.uploadButton{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+
+}
+.audioButton{
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+
+}
+
+h2{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.gridContainer{
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 9fr;
+  overflow-y: scroll;
+  position: relative;
+
+}
+.mainPage{
+  height: 100vh;
+  overflow: auto;
+}
+.flex{
+  display: flex;
+  justify-content: space-between;
+}
+.responseField{
+  background-color: black;
+  padding: 20px;
+  width: 70%;
+  float: right;
+  color: white;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+.promptField{
+  background-color: rgb(54, 54, 54);
+  padding: 20px;
+  width: 70%;
+  float: left;
+  color: white;
+  border-radius: 20px;
+  margin-top: 50px;
+  margin-left: 20px;
+}
+.profile{
+  float: right;
+  position: fixed;
+  top: 10px;
+  right: 50px;
+  transition: ease-in;
+  border-radius: 100%;
+  transition-delay: 0.1s;
+}
+.profile:hover{
+  border: 1px solid purple;
+}
+.navigationBar{
+  position: fixed;
+  top: 15px;
+  left: 10px;
+  z-index: 2;
+  display: none;
+}
+.mobileNav{
+  display: none;
+  height: 100vh;
+  width: 70vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  z-index: 10000;
+  padding: 10px;
+  overflow-y: auto;
+}
+.closeBtn{
+  position: sticky;
+  top: 0px;
+  right: 0px;
+  float: right;
+  border-radius: 100%;
+  display: none;
+}
+.navigation{
+  background-color: black;
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 20px;
+  z-index: 100;
+}
+ul{
+  list-style-type: none;
+}
+li{
+  font-size: large;
+  margin-bottom: 10px;
+  width: 100%;           
+  white-space: nowrap;    
+  overflow: hidden;       
+  text-overflow: ellipsis;
+}
+.audio{
+  margin-left: 10px;
+}
+.mt-1{
+  margin-top: 50px;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+@media screen and (max-width:700px) {
+  .navigationBar{
+    display: block;
+  }
+  .navigation{
+    display: none;
+  }
+  .gridContainer{
+    grid-template-columns: 12fr;
+    width: 100%;
+  }
+  .responseField{
+    width: 90%;
+  }
+  .profile{
+    display: none;
+  }
+  .mobileNav{
+    display: block;
+  }
+  .closeBtn{
+    display: block;
+  }
+  .wide{
+    width: 90%;
+  }
+  h1{
+    font-size: 25px;
+  }
+}
