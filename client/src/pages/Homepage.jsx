@@ -153,13 +153,6 @@ function Homepage() {
 
 
 
-
-
-
-            <div className="container">
-              {loading && <img src={Spinner} alt="" />}
-            </div>
-
             <div>
                 <FaArrowDown onClick={scrollDown} className='downBtn' size={45}/>
             </div>
