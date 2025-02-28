@@ -29,7 +29,7 @@ function Homepage() {
   const aiCall=async()=>{
     try {
         setLoading(true)
-        const response = await axios.post('http://localhost:7000/',{prompt:prompt})
+        const response = await axios.post('https://ai-v91l.onrender.com/',{prompt:prompt})
         const message = response.data.message
         setResponse(message)
         setDiscussion((prev) => {

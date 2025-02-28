@@ -25,7 +25,7 @@ function LoginPage() {
             if(!email || !password){
                 window.alert('Please fill all the required field')
             }
-            const response = await axios.post('http://localhost:7000/login', form)
+            const response = await axios.post('https://ai-v91l.onrender.com/login', form)
             if(response.data.token){
                 localStorage.setItem('email', response.data.email)
                 navigate('/homepage')

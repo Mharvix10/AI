@@ -25,7 +25,7 @@ function SignupPage() {
             if(!username || !email || !password){
                 window.alert('Please fill all the required field')
             }
-            const response = await axios.post('http://localhost:7000/signup', form)
+            const response = await axios.post('https://ai-v91l.onrender.com/signup', form)
             if(response.data.message ==='found'){
                 window.alert('This email is already in use by another user')
             }
