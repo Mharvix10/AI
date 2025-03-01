@@ -46,7 +46,7 @@ h1 {
   background-color: rgb(37, 133, 155);
   padding: 10px;
   position: absolute;
-  bottom: 20px;
+  bottom: 0px;
   right: 30px;
   transition: 0.3s ease-in;
 }
@@ -204,6 +204,7 @@ h2{
 .mainPage{
   height: 100vh;
   overflow: auto;
+  padding: 20px 0px;
 }
 .flex{
   display: flex;
