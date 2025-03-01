@@ -46,9 +46,9 @@ function SignupPage() {
             <input name='username' value={username} onChange={onChange} className='smallInput' type="text" placeholder='Enter your username' />
             <input name='email' value={email} onChange={onChange} className='smallInput' type="text" placeholder='Enter your email' />
             <input name='password' value={password} onChange={onChange} className='smallInput' type="text" placeholder='Enter your password' />
-            <button onClick={signUp} className='center'>Signup</button>
+            <button onClick={signUp} className='center mb-1'>Signup</button>
 
-            <p>Have an account? <span className='link' onClick={()=>{navigate('/login')}}>Login</span></p>
+            <p className='textCenter'>Do you have an account already? <span className='link' onClick={()=>{navigate('/login')}}>Login</span></p>
         </div>
     </div>
   )
