@@ -86,8 +86,7 @@ function Homepage() {
     if (storedData) {
         setDiscussion(storedData);
     }
-    console.log('hello')
-
+    
   },[])
   
 
