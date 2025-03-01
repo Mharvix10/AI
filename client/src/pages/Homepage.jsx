@@ -11,7 +11,8 @@ import Logo from '../assets/unilagLogo.png'
 
 
 function Homepage() {
-    const email = localStorage.getItem('email')
+    const token = sessionStorage.getItem('token')
+    const email = sessionStorage.getItem('email')
     const bottomRef = useRef(null)
     const navigate = useNavigate()
     const [profile, setProfile] = useState(false)
@@ -29,15 +30,18 @@ function Homepage() {
   const aiCall=async()=>{
     try {
         setLoading(true)
-        const response = await axios.post('https://ai-v91l.onrender.com/',{prompt:prompt})
+        const response = await axios.post('https://ai-v91l.onrender.com/',{prompt:prompt},{headers:{Authorization: token}})
         const message = response.data.message
-        setResponse(message)
-        setDiscussion((prev) => {
-            const updatedDiscussion = [...prev, { prompt: prompt, response: message }];
-            localStorage.setItem('data', JSON.stringify(updatedDiscussion));
-            return updatedDiscussion;
-        });
-        setLoading(false)
+        if(response.status===200){
+            setResponse(message)
+            setDiscussion((prev) => {
+                const updatedDiscussion = [...prev, { prompt: prompt, response: message }];
+                sessionStorage.setItem('data', JSON.stringify(updatedDiscussion));
+                return updatedDiscussion;
+            });
+            setLoading(false)
+        }
+
     } catch (error) {
         console.log(error)
     }
@@ -78,13 +82,14 @@ function Homepage() {
 
 
   useEffect(()=>{
-    const storedData = JSON.parse(localStorage.getItem('data'))
+    const storedData = JSON.parse(sessionStorage.getItem('data'))
     if (storedData) {
         setDiscussion(storedData);
     }
     console.log('hello')
 
   },[])
+  
 
   return (
     <>
@@ -140,7 +145,7 @@ function Homepage() {
             {chatBox}
 
 
-            <div className="container wide">
+            <div className="container wide mb-1">
               <textarea ref={bottomRef} className='textArea' type="text" placeholder='Ask anything' name='prompt' value={prompt} onChange={onEdit}  />
               <button onClick={upload} className='uploadButton'>Upload</button>
               <button className='audioButton' onClick={()=>{navigate('/audioPage')}}><AiFillAudio/></button>
@@ -152,7 +157,7 @@ function Homepage() {
 
 
 
-
+            {/* Fixed profile icon and scroll down button */}
             <div>
                 <FaArrowDown onClick={scrollDown} className='downBtn' size={45}/>
             </div>

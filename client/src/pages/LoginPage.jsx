@@ -26,12 +26,13 @@ function LoginPage() {
                 window.alert('Please fill all the required field')
             }
             const response = await axios.post('https://ai-v91l.onrender.com/login', form)
-            if(response.data.token){
-                localStorage.setItem('email', response.data.email)
+            if(response.status===200){
+                sessionStorage.setItem('token', response.data.token)
+                sessionStorage.setItem('email', response.data.email)
                 navigate('/homepage')
             }
         } catch (error) {
-            
+            console.log(error)
         }
     }
   return (

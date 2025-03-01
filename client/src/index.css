@@ -241,6 +241,9 @@ h2{
 .profile:hover{
   border: 1px solid purple;
 }
+.mb-1{
+  margin-bottom: 50px;
+}
 .navigationBar{
   position: fixed;
   top: 15px;

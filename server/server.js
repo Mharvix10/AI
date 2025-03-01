@@ -17,16 +17,38 @@ ConnectDb()
 
 
 
+const authenticateToken = (req, res, next) => {
+    const token = req.headers['authorization'];
+  
+    if (token) {
+      jwt.verify(token, process.env.PRIVATE_KEY, (err, decoded) => {
+        if (err) {
+          return res.json({ message: 'Invalid token' });
+        }
+        req.user = decoded;
+        next();
+      });
+    } else {
+      return res.json({ message: 'No token provided' });
+    }
+  };
+
+
+
 
 app.post('/',(req,res)=>{
     const {prompt} = req.body
 
     const aiCall=async()=>{
-        const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction: "You are an AI model with deep knowledge in the field of computer science. Your responses should be focused on topics such as programming languages, algorithms, data structures, computer architecture, software engineering, machine learning, artificial intelligence, databases, networking, and other related subfields of computer science. Please avoid answering questions outside of the computer science domain." });
-        const result = await model.generateContent(prompt);
-        const aiResponse = result.response.text()
-        res.json({message: aiResponse})
+        try {
+            const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction: "You are an AI model with deep knowledge in the field of computer science. Your responses should be focused on topics such as programming languages, algorithms, data structures, computer architecture, software engineering, machine learning, artificial intelligence, databases, networking, and other related subfields of computer science. Please avoid answering questions outside of the computer science domain." });
+            const result = await model.generateContent(prompt);
+            const aiResponse = result.response.text()
+            res.status(200).json({message: aiResponse})
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     aiCall()
@@ -40,12 +62,12 @@ app.post('/signup',async(req,res)=>{
     try {
         const userExist = await userModel.findOne({email})
         if(userExist){
-            res.json({message:'found'})
+            res.status(401).json({message:'found'})
         }
         console.log(username, password, email)
         const hashedPassword = await bcrypt.hash(password,10)
         const user = await userModel.create({username,email,password:hashedPassword})
-        res.json({message:'successful'})
+        res.status(201).json({message:'successful'})
         console.log(user)
     } catch (error) {
         console.log(error)
@@ -63,7 +85,7 @@ app.post('/login',async(req,res)=>{
                 const id = user.username
                 const email = user.email
                 var token = jwt.sign(id, process.env.PRIVATE_KEY)
-                res.json({token: token, email:email})
+                res.status(200).json({token: token, email:email})
                 console.log(token)
             }else{
                 console.log('Wrong credentials')

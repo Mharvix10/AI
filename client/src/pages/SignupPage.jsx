@@ -26,10 +26,10 @@ function SignupPage() {
                 window.alert('Please fill all the required field')
             }
             const response = await axios.post('https://ai-v91l.onrender.com/signup', form)
-            if(response.data.message ==='found'){
+            if(response.status===401){
                 window.alert('This email is already in use by another user')
             }
-            else if(response.data.message==='successful'){
+            else if(response.status===201){
                 navigate('/login')
             }
         } catch (error) {
