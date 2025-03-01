@@ -88,6 +88,7 @@ app.post('/login',async(req,res)=>{
                 res.status(200).json({token: token, email:email})
                 console.log(token)
             }else{
+                res.status(401).json({message:'wrong credentials'})
                 console.log('Wrong credentials')
             }
         }

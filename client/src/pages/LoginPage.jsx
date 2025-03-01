@@ -24,13 +24,19 @@ function LoginPage() {
         try {
             if(!email || !password){
                 window.alert('Please fill all the required field')
+                return
             }
             const response = await axios.post('https://ai-v91l.onrender.com/login', form)
-            if(response.status===200){
+            if(response.status===401){
+                window.alert('wrong credentials')
+                return
+            }
+            else if(response.status===200){
                 sessionStorage.setItem('token', response.data.token)
                 sessionStorage.setItem('email', response.data.email)
                 navigate('/homepage')
             }
+            
         } catch (error) {
             console.log(error)
         }
