@@ -24,6 +24,7 @@ function SignupPage() {
         try {
             if(!username || !email || !password){
                 window.alert('Please fill all the required field')
+                return
             }
             const response = await axios.post('https://ai-v91l.onrender.com/signup', form)
             if(response.status===401){
