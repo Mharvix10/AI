@@ -27,13 +27,14 @@ function SignupPage() {
                 return
             }
             const response = await axios.post('https://ai-v91l.onrender.com/signup', form)
-            if(response.status===401){
-                window.alert('This email is already in use by another user')
-            }
-            else if(response.status===201){
+
+            if(response.status===201){
                 navigate('/login')
             }
         } catch (error) {
+            if(error.response.status===401){
+                window.alert('This email is already registered by a user')
+            }
             console.log(error)
         }
     }
