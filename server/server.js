@@ -90,7 +90,9 @@ app.post('/login',async(req,res)=>{
             }else{
                 res.status(401).json({message:'wrong credentials'})
                 console.log('Wrong credentials')
-            }
+            } 
+        }else{
+            res.status(409).json({message:'Email not found'})
         }
     } catch (error) {
         console.log(error)

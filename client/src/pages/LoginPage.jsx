@@ -38,6 +38,9 @@ function LoginPage() {
             if(error.response.status===401){
                 window.alert('wrong credentials')
             }
+            if(error.response.status===409){
+                window.alert('Email not found')
+            }
             console.log(error)
         }
     }
