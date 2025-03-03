@@ -35,6 +35,11 @@ const authenticateToken = (req, res, next) => {
 
 
 
+app.get('/',(req,res)=>{
+    res.json({message:'Welcome to the CSC-AI server'})
+    console.log('Welcome to csc-ai server')
+})
+
 
 app.post('/',(req,res)=>{
     const {prompt} = req.body
