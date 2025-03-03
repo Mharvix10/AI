@@ -2,9 +2,10 @@ import {useState, useEffect} from 'react'
 import Logo from '../assets/unilagLogo.png'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
-
+import Spinner from '../assets/spinner.gif'
 
 function LoginPage() {
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const [form, setForm] = useState({
         email:'',
@@ -22,8 +23,10 @@ function LoginPage() {
     }
     const login=async()=>{
         try {
+            setLoading(true)
             if(!email || !password){
                 window.alert('Please fill all the required field')
+                setLoading(false)
                 return
             }
             const response = await axios.post('https://ai-v91l.onrender.com/login', form)
@@ -31,14 +34,17 @@ function LoginPage() {
             if(response.status===200){
                 sessionStorage.setItem('token', response.data.token)
                 sessionStorage.setItem('email', response.data.email)
+                setLoading(false)
                 navigate('/homepage')
             }
             
         } catch (error) {
             if(error.response.status===401){
+                setLoading(false)
                 window.alert('wrong credentials')
             }
             if(error.response.status===409){
+                setLoading(false)
                 window.alert('Email not found')
             }
             console.log(error)
@@ -55,6 +61,15 @@ function LoginPage() {
             <button onClick={login} className='center'>Login</button>
             <p className='link textCenter' onClick={()=>{navigate('/register')}}>Create an account</p>
         </div>
+
+
+        {
+            loading && (
+                <div className='centeredSpinner'>
+                    <img src={Spinner} width='50px' alt="" />
+                </div>
+            )
+        }
     </div>
   )
 }

@@ -33,16 +33,18 @@ function Homepage() {
         const response = await axios.post('https://ai-v91l.onrender.com/',{prompt:prompt},{headers:{Authorization: token}})
         const message = response.data.message
         if(response.status===200){
+            setLoading(false)
             setResponse(message)
             setDiscussion((prev) => {
                 const updatedDiscussion = [...prev, { prompt: prompt, response: message }];
                 sessionStorage.setItem('data', JSON.stringify(updatedDiscussion));
                 return updatedDiscussion;
             });
-            setLoading(false)
+            
         }
 
     } catch (error) {
+        setLoading(false)
         console.log(error)
     }
   }
@@ -157,12 +159,24 @@ function Homepage() {
 
 
             {/* Fixed profile icon and scroll down button */}
+
+            {
+                loading && (
+                    <div className='spinnerContainer'>
+                        <img src={Spinner} width='50px' alt="" />
+                    </div>
+                )
+            }
+
+
+
+
             <div>
                 <FaArrowDown onClick={scrollDown} className='downBtn' size={45}/>
             </div>
 
             <div className='profileSection'>
-                <p>{profile &&  email}</p>
+                <p>{profile &&  (<span className='whiteBg'>{email}</span>)}</p>
             </div>
 
       </div>

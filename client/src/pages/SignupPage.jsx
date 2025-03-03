@@ -2,8 +2,10 @@ import {useState, useEffect} from 'react'
 import Logo from '../assets/unilagLogo.png'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
+import Spinner from '../assets/spinner.gif'
 
 function SignupPage() {
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const [form, setForm] = useState({
         username:'',
@@ -22,17 +24,21 @@ function SignupPage() {
     }
     const signUp=async()=>{
         try {
+            setLoading(true)
             if(!username || !email || !password){
+                setLoading(false)
                 window.alert('Please fill all the required field')
                 return
             }
             const response = await axios.post('https://ai-v91l.onrender.com/signup', form)
 
             if(response.status===201){
+                setLoading(false)
                 navigate('/login')
             }
         } catch (error) {
             if(error.response.status===401){
+                setLoading(false)
                 window.alert('This email is already registered by a user')
             }
             console.log(error)
@@ -51,6 +57,16 @@ function SignupPage() {
 
             <p className='textCenter'>Do you have an account already? <span className='link' onClick={()=>{navigate('/login')}}>Login</span></p>
         </div>
+
+
+
+        {
+            loading && (
+                <div className='centeredSpinner'>
+                    <img src={Spinner} width='50px' alt="" />
+                </div>
+            )
+        }
     </div>
   )
 }

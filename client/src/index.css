@@ -46,7 +46,7 @@ h1 {
   background-color: rgb(37, 133, 155);
   padding: 10px;
   position: absolute;
-  bottom: 0px;
+  bottom: 150px;
   right: 30px;
   transition: 0.3s ease-in;
 }
@@ -210,6 +210,8 @@ h2{
   display: flex;
   justify-content: space-between;
 }
+
+
 .responseField{
   background-color: black;
   padding: 20px;
@@ -231,10 +233,20 @@ h2{
   margin-top: 50px;
   margin-left: 20px;
 }
+.spinnerContainer{
+  position: fixed;
+  top: 70%;
+  left: 60%;
+}
+.centeredSpinner{
+  position: fixed;
+  top: 70%;
+  left: 50%;
+}
 .profile{
   float: right;
   position: fixed;
-  top: 10px;
+  top: 5px;
   right: 50px;
   transition: ease-in;
   border-radius: 100%;
@@ -242,6 +254,11 @@ h2{
 }
 .profile:hover{
   border: 1px solid purple;
+}
+.whiteBg{
+  background-color: black;
+  padding: 10px 0px;
+  border: 1px solid blue;
 }
 .mb-1{
   margin-bottom: 50px;
@@ -260,7 +277,7 @@ h2{
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(52, 50, 50);
   color: rgb(255, 255, 255);
   z-index: 10000;
   padding: 10px;
@@ -342,5 +359,13 @@ li{
   }
   .container{
     width: 90%;
+  }
+  .spinnerContainer{
+    position: fixed;
+    top: 70%;
+    left: 45%;
+  }
+  .centeredSpinner{
+    left: 45%;
   }
 }
