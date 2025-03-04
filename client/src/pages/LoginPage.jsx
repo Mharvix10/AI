@@ -57,7 +57,7 @@ function LoginPage() {
         </header>
         <div className="container mt-1">
             <input name='email' value={email} onChange={onChange} className='smallInput' type="text" placeholder='Enter your email' />
-            <input name='password' value={password} onChange={onChange} className='smallInput' type="text" placeholder='Enter your password' />
+            <input name='password' value={password} onChange={onChange} className='smallInput' type="password" placeholder='Enter your password' />
             <button onClick={login} className='center'>Login</button>
             <p className='link textCenter' onClick={()=>{navigate('/register')}}>Create an account</p>
         </div>

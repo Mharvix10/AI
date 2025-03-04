@@ -34,6 +34,7 @@ function SignupPage() {
 
             if(response.status===201){
                 setLoading(false)
+                window.alert('User registered successfully')
                 navigate('/login')
             }
         } catch (error) {
@@ -52,7 +53,7 @@ function SignupPage() {
         <div className="container mt-1">
             <input name='username' value={username} onChange={onChange} className='smallInput' type="text" placeholder='Enter your username' />
             <input name='email' value={email} onChange={onChange} className='smallInput' type="text" placeholder='Enter your email' />
-            <input name='password' value={password} onChange={onChange} className='smallInput' type="text" placeholder='Enter your password' />
+            <input name='password' value={password} onChange={onChange} className='smallInput' type="password" placeholder='Enter your password' />
             <button onClick={signUp} className='center mb-1'>Signup</button>
 
             <p className='textCenter'>Do you have an account already? <span className='link' onClick={()=>{navigate('/login')}}>Login</span></p>
