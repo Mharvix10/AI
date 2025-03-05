@@ -11,6 +11,7 @@ import Logo from '../assets/unilagLogo.png'
 
 
 function Homepage() {
+    const [file, setFile] = useState(null)
     const token = sessionStorage.getItem('token')
     const email = sessionStorage.getItem('email')
     const bottomRef = useRef(null)
@@ -25,6 +26,32 @@ function Homepage() {
     e.preventDefault()
     setPrompt(e.target.value)
     
+  }
+
+
+  const handleFile=async(e)=>{
+    e.preventDefault()
+    setFile(e.target.files[0])
+    console.log('file:',file)
+    const formData = new FormData()
+    formData.append('file', file)
+    try {
+      const response = await axios.post('https://ai-v91l.onrender.com/upload', formData, {headers: {'Content-Type':'multipart/form-data'}})
+      const message = response.data.message
+      if(response.status===200){
+          setLoading(false)
+          setResponse(message)
+          setDiscussion((prev) => {
+              const updatedDiscussion = [...prev, { prompt: prompt, response: message }];
+              sessionStorage.setItem('data', JSON.stringify(updatedDiscussion));
+              return updatedDiscussion;
+          });
+          
+      }
+    } catch (error) {
+      console.log(error)
+      window.alert('Error while uploading file')
+    }
   }
 
   const aiCall=async()=>{
@@ -146,10 +173,15 @@ function Homepage() {
             {chatBox}
 
 
-            <div className="container wide mb-1">
+            <div className="container wide">
               <textarea ref={bottomRef} className='textArea' type="text" placeholder='Ask anything' name='prompt' value={prompt} onChange={onEdit}  />
               <button onClick={upload} className='uploadButton'>Upload</button>
               <button className='audioButton' onClick={()=>{navigate('/audioPage')}}><AiFillAudio/></button>
+            </div>
+
+
+            <div className="container mt-0">
+              <input type="file" name="file" id="file" onChange={handleFile} accept='.pdf .jpg .png .jpeg .heif .heic' />
             </div>
             
 
