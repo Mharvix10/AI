@@ -2,6 +2,8 @@ const express = require('express')
 const {GoogleGenerativeAI} = require('@google/generative-ai')
 const cors = require('cors')
 const app = express()
+const fs = require('fs')
+const path = require('path')
 const multer = require('multer')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -11,6 +13,7 @@ require('dotenv').config()
 const PORT = process.env.PORT || 5000
 app.use(cors())
 app.use(express.json())
+const upload = multer({ dest: 'uploads/' })
 
 // connect to the mongoose database
 ConnectDb()
@@ -32,6 +35,8 @@ const authenticateToken = (req, res, next) => {
       return res.json({ message: 'No token provided' });
     }
   };
+
+
 
 
 
@@ -99,6 +104,46 @@ app.post('/login',async(req,res)=>{
         }else{
             res.status(409).json({message:'Email not found'})
         }
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
+
+
+app.post('/upload', upload.single('file'), (req,res)=>{
+    const image = req.file
+    try {
+        const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+
+        // Converts local file information to base64
+        function fileToGenerativePart(path, mimeType) {
+        return {
+            inlineData: {
+            data: Buffer.from(fs.readFileSync(path)).toString("base64"),
+            mimeType
+            },
+        };
+        }
+
+        async function run() {
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction: "You are an AI model with deep knowledge in the field of computer science. Your responses should be focused on topics such as programming languages, algorithms, data structures, computer architecture, software engineering, machine learning, artificial intelligence, databases, networking, and other related subfields of computer science. Please avoid answering questions outside of the computer science domain" });
+
+        const prompt = "Write the solution to the problem in the image";
+
+        const imageParts = [
+            fileToGenerativePart(image.path, image.mimetype)
+        ];
+
+        const generatedContent = await model.generateContent([prompt, ...imageParts]);
+        
+        console.log(generatedContent.response.text());
+        const aiResponse = generatedContent.response.text()
+        res.status(200).json({message: aiResponse})
+        }
+
+        run();
     } catch (error) {
         console.log(error)
     }
