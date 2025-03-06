@@ -43,7 +43,8 @@ h1 {
 }
 .downBtn{
   border-radius: 100px ;
-  background-color: rgb(37, 133, 155);
+  background-color: rgb(165, 237, 254);
+  color: black;
   padding: 10px;
   position: absolute;
   bottom: 150px;
@@ -51,7 +52,6 @@ h1 {
   transition: 0.3s ease-in;
 }
 .downBtn:hover{
-  border: 2px solid rgb(174, 5, 174);
   background-color: rgba(37, 133, 155, 0.778)
 }
 
@@ -261,6 +261,7 @@ h2{
 }
 .whiteBg{
   background-color: black;
+  color: white;
   padding: 10px 0px;
   border: 1px solid blue;
 }
@@ -281,11 +282,12 @@ h2{
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgb(52, 50, 50);
+  background-color: rgb(38, 38, 38);
   color: rgb(255, 255, 255);
   z-index: 10000;
   padding: 10px;
   overflow-y: auto;
+  border-right: #535bf2 2px solid;
 }
 .closeBtn{
   position: sticky;
@@ -328,7 +330,30 @@ li{
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: rgb(184, 183, 183);
+  }
+  .smallInput{
+    background-color: whitesmoke;
+    color: black;
+  }
+  .navigation{
+    background-color: whitesmoke;
+    color: black;
+  }
+  .textArea{
+    color: black;
+  }
+  .promptField{
+    background-color: rgba(128, 128, 128, 0.637);
+    color: black;
+  }
+  .responseField{
+    background-color: whitesmoke;
+    color: black;
+  }
+  .profile{
+    color: rgb(83, 216, 246);
+    background-color: white;
   }
 }
 
@@ -359,7 +384,7 @@ li{
     width: 90%;
   }
   h1{
-    font-size: 25px;
+    font-size: 30px;
   }
   .container{
     width: 90%;
