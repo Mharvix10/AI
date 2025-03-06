@@ -125,7 +125,7 @@ function Homepage() {
         {
             showNav && (
                 <div className='mobileNav'>
-                    <IoCloseSharp className='closeBtn' size={50} color='red' onClick={()=>{setShowNav((prev)=>!prev)}}/>
+                    <IoCloseSharp className='closeBtn' size={50} color='black' onClick={()=>{setShowNav((prev)=>!prev)}}/>
                     <h2 className='textCenter'>History</h2>
                     <ul>
                         {discussion.map((items, index)=>{
@@ -156,7 +156,7 @@ function Homepage() {
       <div className='mainPage'>
             <h1 className='textCenter'>Computer Science AI</h1>
             <header className='fixed'>
-                <MdDehaze className='navigationBar' size={30} onClick={()=>{setShowNav((prev)=>!prev)}}/>
+                <MdDehaze className='navigationBar' size={35} onClick={()=>{setShowNav((prev)=>!prev)}}/>
                 <IoPersonCircleSharp onClick={()=>{setProfile((prev)=>!prev)}} className='profile' size={60}/>
             </header>
           
