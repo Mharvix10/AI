@@ -156,7 +156,7 @@ function Homepage() {
       <div className='mainPage'>
             <h1 className='textCenter'>Computer Science AI</h1>
             <header className='fixed'>
-                <MdDehaze className='navigationBar' size={35} onClick={()=>{setShowNav((prev)=>!prev)}}/>
+                <MdDehaze className='navigationBar' size={37} onClick={()=>{setShowNav((prev)=>!prev)}}/>
                 <IoPersonCircleSharp onClick={()=>{setProfile((prev)=>!prev)}} className='profile' size={60}/>
             </header>
           

@@ -43,7 +43,7 @@ h1 {
 }
 .downBtn{
   border-radius: 100px ;
-  background-color: rgb(225, 255, 255);
+  background-color: rgb(255, 255, 255);
   color: black;
   padding: 10px;
   position: absolute;
@@ -271,7 +271,7 @@ h2{
   margin-bottom: 50px;
 }
 .navigationBar{
-  background-color: rgb(225, 255, 255);
+  background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   padding: 2px;
   border-radius: 3px;
