@@ -56,6 +56,9 @@ function Homepage() {
 
   const aiCall=async()=>{
     try {
+      if(!prompt){
+        window.alert('What question do you have for me?')
+      }else{
         setLoading(true)
         const response = await axios.post('https://ai-v91l.onrender.com/',{prompt:prompt},{headers:{Authorization: token}})
         const message = response.data.message
@@ -69,6 +72,8 @@ function Homepage() {
             });
             
         }
+      }
+
 
     } catch (error) {
         setLoading(false)
